@@ -1,0 +1,26 @@
+const {
+  InteractionHandler,
+  InteractionHandlerTypes,
+} = require("@sapphire/framework");
+const { AutocompleteInteraction } = require("discord.js");
+
+class AutocompleteHandler extends InteractionHandler {
+  constructor(ctx, options) {
+    super(ctx, {
+      ...options,
+      interactionHandlerType: InteractionHandlerTypes.Autocomplete,
+    });
+  }
+  parse(interaction) {
+    if (interaction.commandId !== "commandID") return this.none();
+    return this.some();
+  }
+  /**
+   *
+   * @param {AutocompleteInteraction} interaction
+   */
+  async run(interaction) {}
+}
+module.exports = {
+  AutocompleteHandler,
+};

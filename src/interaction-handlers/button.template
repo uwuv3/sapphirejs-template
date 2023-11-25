@@ -1,0 +1,30 @@
+const {
+  InteractionHandler,
+  InteractionHandlerTypes,
+} = require("@sapphire/framework");
+const {
+  ButtonInteraction
+} = require("discord.js");
+
+class ButtonHandler extends InteractionHandler {
+  constructor(ctx, options) {
+    super(ctx, {
+      ...options,
+      interactionHandlerType: InteractionHandlerTypes.Button,
+    });
+  }
+
+  parse(interaction) {
+    if (interaction.customId !== "buttonName") return this.none();
+    return this.some();
+  }
+  /**
+   *
+   * @param {ButtonInteraction} interaction
+   */
+  async run(interaction) {
+  }
+}
+module.exports = {
+  ButtonHandler,
+};

@@ -1,0 +1,27 @@
+const {
+  InteractionHandler,
+  InteractionHandlerTypes,
+} = require("@sapphire/framework");
+const { ModalSubmitInteraction } = require("discord.js");
+
+class ModalSubmitHandler extends InteractionHandler {
+  constructor(ctx, options) {
+    super(ctx, {
+      ...options,
+      interactionHandlerType: InteractionHandlerTypes.ModalSubmit,
+    });
+  }
+
+  parse(interaction) {
+    if (interaction.customId !== "modalName") return this.none();
+    return this.some();
+  }
+   /**
+   *
+   * @param {ModalSubmitInteraction} interaction
+   */
+  async run(interaction) {}
+}
+module.exports = {
+  ModalSubmitHandler,
+};

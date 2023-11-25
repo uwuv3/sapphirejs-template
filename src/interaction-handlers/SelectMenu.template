@@ -1,0 +1,26 @@
+const {
+  InteractionHandler,
+  InteractionHandlerTypes,
+} = require("@sapphire/framework");
+const { AnySelectMenuInteraction } = require("discord.js");
+
+class SelectMenuHandler extends InteractionHandler {
+  constructor(ctx, options) {
+    super(ctx, {
+      ...options,
+      interactionHandlerType: InteractionHandlerTypes.SelectMenu,
+    });
+  }
+  parse(interaction) {
+    if (interaction.customId !== "selectName") return this.none();
+    return this.some();
+  }
+  /**
+   *
+   * @param {import("discord.js").AnySelectMenuInteraction} interaction
+   */
+  async run(interaction) {}
+}
+module.exports = {
+  SelectMenuHandler,
+};
